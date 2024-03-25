@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 // Define the robots function to generate the robots.txt file dynamically
 const robots = (): MetadataRoute.Robots => ({
-  // Define the rules for the robots.txt file
+
   rules: [
     {
       userAgent: '*', // Apply rules to all user-agents
