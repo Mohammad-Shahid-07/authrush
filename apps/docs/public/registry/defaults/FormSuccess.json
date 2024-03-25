@@ -1,0 +1,10 @@
+{
+  "name": "FormSuccess",
+  "files": [
+    {
+      "name": "FormSuccess.tsx",
+      "content": "import React from 'react';\nimport { CheckCircle } from 'lucide-react';\n\ninterface FormSuccessProps {\n  message?: string;\n}\n\nexport const FormSuccess = ({ message }: FormSuccessProps) => {\n  if (!message) return null;\n\n  return (\n    <div className='bg-emerald-500/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-emerald-500'>\n      <CheckCircle className='h-4 w-4' />\n      <p>{message}</p>\n    </div>\n  );\n};\n"
+    }
+  ],
+  "type": "components:auth"
+}

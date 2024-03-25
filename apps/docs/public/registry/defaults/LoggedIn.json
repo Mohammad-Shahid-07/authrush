@@ -1,0 +1,10 @@
+{
+  "name": "LoggedIn",
+  "files": [
+    {
+      "name": "LoggedIn.tsx",
+      "content": "import React from \"react\";\nimport { currentUser } from \"./currentSession\";\n interface SignedInProps {\n  children: React.ReactNode;\n}\nconst SignedIn = async ({ children }: SignedInProps) => {\n  const user = await currentUser();\n  if (!user) {\n    return;\n  }\n  return <div>{children}</div>;\n};\n\nexport default SignedIn;"
+    }
+  ],
+  "type": "lib:utils"
+}

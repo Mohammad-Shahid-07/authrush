@@ -1,0 +1,49 @@
+{
+  "name": "auth.ts",
+  "files": [
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "\nconst existingUser = await GetUserById(user.id);\n\n  \nif (!existingUser?.emailVerified) return false;",
+      "comment": "//[credentialsSignIn]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: string,\n",
+      "comment": "//[UsernameType]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: username,",
+      "comment": "//[UsernamePrisma]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "const username = email.split(\"@\")[0];",
+      "comment": "//[DefUsername]"
+    },
+
+    {
+      "name": "username",
+      "imports": "",
+      "content": "token.username = dbUser.username;\n",
+      "comment": "//[AddUsernameInToken]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "session.user.username = token?.username as string;\n",
+      "comment": "//[AddUsernameInSession]"
+    },
+
+    {
+      "name": "twoFactorAuth",
+      "imports": "import {getTwoFactorConfirmationByUserId} from \"@/actions/auth.actions\";\n",
+      "content": "\nif (existingUser.twoFactorEnabled) {\n      const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(\n        existingUser.id,\n      );\n\n      if (!twoFactorConfirmation) return false;\n\n      // Delete two factor confirmation for next sign in\n      await database.twoFactorConfirmation.delete({\n        where: { id: twoFactorConfirmation.id },\n      });\n    }\n",
+      "comment": "//[credentialsSignInTwoFactor]"
+    }
+  ]
+}

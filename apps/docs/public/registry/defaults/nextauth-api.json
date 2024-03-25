@@ -1,0 +1,10 @@
+{
+  "name": "nextauth-api",
+  "files": [
+    {
+      "name": "route.ts",
+      "content": "export { GET, POST } from \"@/auth\""
+    }
+  ],
+  "type": "api:nextauth"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Social",
+  "files": [
+    {
+      "name": "Social.tsx",
+      "content": "\"use client\";\nimport { Button } from \"@/components/ui/button\";\nimport { signIn } from \"next-auth/react\";\nimport { DEFAULT_LOGIN_REDIRECT } from \"@/routes\";\nimport { useSearchParams } from \"next/navigation\";\nimport Image from \"next/image\";\nexport const Social = () => {\n  const searchParams = useSearchParams();\n  const callbackUrl = searchParams.get(\"callbackUrl\");\n\n  const handleOauth = (provider: string) => {\n    signIn(provider, {\n      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,\n    });\n  };\n\n  return (\n    <div className=\"grid grid-cols-2 w-full gap-x-2\">\n      {/*[Google]*/}\n        {/*[Github]*/}\n        </div>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

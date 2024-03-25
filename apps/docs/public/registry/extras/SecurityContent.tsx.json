@@ -1,0 +1,17 @@
+{
+  "name": "SecurityContent.tsx",
+  "files": [
+    {
+      "name": "twoFactorAuth",
+      "imports": "import { TwoFactorTogglerSchema } from \"@/validations\";\nimport { TwoFactorSystem } from \"@/actions/user.actions\";\nimport { Switch } from \"@/components/ui/switch\";",
+      "content": "const TwoFactorToggle = ({ user }: { user: string }) => {\n  const [error, setError] = useState<string | undefined>(\"\");\n  const [success, setSuccess] = useState<string | undefined>(\"\");\n  const [isPending, setIsPending] = useState(false);\n  const [initialValuesReady, setInitialValuesReady] = useState(false);\n  const pathname = usePathname();\n  const parsedUser = JSON.parse(user);\n\n  // 1. Define your form.\n  const form = useForm<z.infer<typeof TwoFactorTogglerSchema>>({\n    resolver: zodResolver(TwoFactorTogglerSchema),\n    defaultValues: {\n      twoFactorEnabled: parsedUser?.TwoFactorEnabled ,\n    },\n  });\n\n useEffect(() => {\n   form.setValue(\"twoFactorEnabled\", parsedUser?.twoFactorEnabled || false);\n    const timeoutId = setTimeout(() => {\n   setInitialValuesReady(true);\n    }, 1000); // 1000 milliseconds = 1 second\n        return () => {\n   // Clear the timeout if the component is unmounted before the delay is complete\n    clearTimeout(timeoutId);\n  };  \n}, []); \n\n  async function onSubmit(values: z.infer<typeof TwoFactorTogglerSchema>) {\n    try {\n\n      setSuccess(\"\");\n      setError(\"\");\n            setIsPending(true);\n\n      const res = await TwoFactorSystem({\n        path: pathname,\n        twoFactorEnabled: values.twoFactorEnabled!,\n      });\n      if (res?.error) {\n        setError(res.error);\n      }\n      if (res?.success) {\n        setSuccess(res.success);\n      }\n    } catch (error: any) {\n      setError(\"Something went wrong\");\n    } finally {\n      setIsPending(false);\n    }\n  }\n\n  return (\n    <Form {...form}>\n      <form\n        onChange={form.handleSubmit(onSubmit)}\n        className=\"mt-2 flex w-full flex-col  \"\n      >\n        <FormField\n          control={form.control}\n          name=\"twoFactorEnabled\"\n          render={({ field }) => (\n            <FormItem className=\"flex flex-row items-center justify-between rounded-lg border border-light-400 p-3 shadow-sm dark:border-light-900\">\n              <div className=\"space-y-0.5\">\n                 <FormLabel className=\"font-semibold text-slate-800\">\n                  Two Factor Authentication\n                </FormLabel>\n                <FormDescription className=\"text-slate-700\">\n                  Enable two factor authentication for your account\n                </FormDescription>\n              </div>\n              <FormControl>\n                <Switch\n                  className=\"data-[state=checked]:bg-green-400 data-[state=unchecked]:bg-red-400\"\n                  disabled={isPending || field.value === undefined || field.value === null}\n                  checked={field.value}\n                  onCheckedChange={field.onChange}\n                />\n              </FormControl>\n            </FormItem>\n          )}\n        />\n        <FormError message={error} />\n        <FormSuccess message={success} />\n      </form>\n    </Form>\n  );\n};",
+      "comment": "//[TwoFactorToggleClient]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "       <TwoFactorToggle user={JSON.stringify(user)} />\n",
+      "comment": "{/*TwoFactorToggle*/}"
+    }
+  ]
+}

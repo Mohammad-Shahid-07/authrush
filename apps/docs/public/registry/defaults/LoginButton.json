@@ -1,0 +1,10 @@
+{
+  "name": "LoginButton",
+  "files": [
+    {
+      "name": "LoginButton.tsx",
+      "content": "\"use client\";\n\nimport { useRouter } from \"next/navigation\";\nimport { Dialog } from \"@/components/ui/dialog\";\nimport { DialogContent, DialogTrigger } from \"@/components/ui/react-dialog\";\nimport { LoginForm } from \"@/components/auth/LoginForm\";\n\ninterface LoginButtonProps {\n  children: React.ReactNode;\n  mode?: \"modal\" | \"redirect\";\n  asChild?: boolean;\n}\nconst LoginButton = ({ children, mode, asChild }: LoginButtonProps) => {\n  const router = useRouter();\n  const handleClick = () => {\n    router.push(\"/login\");\n  };\n  if (mode === \"modal\") {\n    return (\n      <Dialog>\n        <DialogTrigger asChild={asChild}>{children}</DialogTrigger>\n        <DialogContent className=\"p-0 w-auto bg-gray-500/50 border-none\">\n          <LoginForm />\n        </DialogContent>\n      </Dialog>\n    );\n  } else {\n    return (\n      <span onClick={handleClick} className=\"cursor-pointer\">\n        {children}\n      </span>\n    );\n  }\n};\n\nexport default LoginButton;"
+    }
+  ],
+  "type": "components:auth"
+}

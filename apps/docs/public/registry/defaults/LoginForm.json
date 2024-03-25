@@ -1,0 +1,10 @@
+{
+  "name": "LoginForm",
+  "files": [
+    {
+      "name": "LoginForm.tsx",
+      "content": "\"use client\"\n//[imports]\nimport { CardWrapper } from \"@/components/auth/CardWrapper\";\n\nexport const LoginForm = () => {\n   //[CredentialsBaseFunctionality]\n\n  return (\n  <CardWrapper\n      headerLabel=\"Welcome back!\"\n      BackButtonLabel=\"Don't have an account?\"\n      BackButtonHref=\"/register\"\n      showSocial>\n      {/*[CredentialsBase]*/}\n    </CardWrapper>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

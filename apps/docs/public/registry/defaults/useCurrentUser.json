@@ -1,0 +1,10 @@
+{
+  "name": "useCurrentUser",
+  "files": [
+    {
+      "name": "useCurrentUser.ts",
+      "content": "import { useSession } from \"next-auth/react\";\nexport const useCurrentUser = () => {\n  const session = useSession();\n  return session.data?.user;\n};"
+    }
+  ],
+  "type": "lib:utils"
+}

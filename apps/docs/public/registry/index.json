@@ -1,0 +1,330 @@
+[
+  {
+    "name": "Mongo.auth.actions",
+    "files": ["auth.actions.ts"],
+    "type": "actions"
+  },
+  {
+    "name": "auth.config",
+    "files": ["auth.config.ts"],
+    "type": "root"
+  },
+  {
+    "name": "Prisma.auth",
+    "files": ["auth.ts"],
+    "type": "root"
+  },
+  {
+    "name": "Mongo.auth",
+    "files": ["auth.ts"],
+    "type": "root"
+  },
+  {
+    "name": "authLayout",
+    "files": ["layout.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "login",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "new-password",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "register",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "error",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "reset",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "verify-email",
+    "files": ["page.tsx"],
+    "type": "app:(auth)"
+  },
+  {
+    "name": "BackButton",
+    "files": ["BackButton.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "CardWrapper",
+    "files": ["CardWrapper.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "constant",
+    "files": ["constant.ts"],
+    "type": "lib"
+  },
+
+  {
+    "name": "ErrorCard",
+    "files": ["ErrorCard.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "FormError",
+    "files": ["FormError.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "FormSuccess",
+    "files": ["FormSuccess.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "Header",
+    "files": ["Header.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "Loader",
+    "files": ["Loader.tsx", "styles.module.css"],
+    "type": "components:auth"
+  },
+  {
+    "name": "LoginButton",
+    "files": ["LoginButton.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "LoginForm",
+    "files": ["LoginForm.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "NewPasswordForm",
+    "files": ["NewPasswordForm.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "RegisterForm",
+    "files": ["RegisterForm.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "ResetForm",
+    "files": ["ResetForm.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "Social",
+    "files": ["Social.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "UserButton",
+    "files": ["UserButton.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "VerifyEmailForm",
+    "files": ["VerifyEmailForm.tsx"],
+    "type": "components:auth"
+  },
+  {
+    "name": "user.model",
+    "files": ["user.model.ts"],
+    "type": "schema"
+  },
+  {
+    "name": "two_factor_token.model",
+    "files": ["two_factor_token.model.ts"],
+    "type": "schema"
+  },
+  {
+    "name": "forgot_pass.model",
+    "files": ["forgot_pass.model.ts"],
+    "type": "schema"
+  },
+  {
+    "name": "email_verify.model",
+    "files": ["email_verify.model.ts"],
+    "type": "schema"
+  },
+  {
+    "name": "settings.actions",
+    "files": ["settings.actions.ts"],
+    "type": "actions"
+  },
+  {
+    "name": "prisma",
+    "files": ["database.ts"],
+    "type": "lib"
+  },
+  {
+    "name": "mongoose",
+    "files": ["database.ts"],
+    "type": "lib"
+  },
+  {
+    "name": "schema.prisma",
+    "files": ["schema.prisma"],
+    "type": "schema"
+  },
+
+  {
+    "name": "nodemailer",
+    "files": ["mail.ts"],
+    "type": "lib"
+  },
+  {
+    "name": "resend",
+    "files": ["mail.ts"],
+    "type": "lib"
+  },
+  {
+    "name": "validations",
+    "files": ["validations.ts"],
+    "type": "root"
+  },
+  {
+    "name": "middleware",
+    "files": ["middleware.ts"],
+    "type": "root"
+  },
+
+  {
+    "name": "UserMenu",
+    "files": ["UserMenu.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "UserSettings",
+    "files": ["UserSettings.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "ChooseAvatar",
+    "files": ["ChooseAvatar.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "AccountContent",
+    "files": ["AccountContent.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "DangerContent",
+    "files": ["DangerContent.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "SecurityContent",
+    "files": ["SecurityContent.tsx"],
+    "type": "components:user"
+  },
+  {
+    "name": "Mongo.user.actions",
+    "files": ["user.actions.ts"],
+    "type": "actions"
+  },
+  {
+    "name": "LoggedIn",
+    "files": ["LoggedIn.tsx"],
+    "type": "lib:utils"
+  },
+  {
+    "name": "currentSession",
+    "files": ["currentSession.ts"],
+    "type": "lib:utils"
+  },
+  {
+    "name": "useCurrentUser",
+    "files": ["useCurrentUser.ts"],
+    "type": "lib:utils"
+  },
+
+  {
+    "name": "routes",
+    "files": ["routes.ts"],
+    "type": "root"
+  },
+  {
+    "name": "nextauth-api",
+    "files": ["route.ts"],
+    "type": "api:nextauth"
+  },
+  {
+    "name": "Prisma.user.actions",
+    "files": ["user.actions.ts"],
+    "type": "actions"
+  },
+  {
+    "name": "Prisma.auth.actions",
+    "files": ["auth.actions.ts"],
+    "type": "actions"
+  },
+  {
+    "name": "card",
+    "files": ["ui/card.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "dialog",
+    "dependencies": ["@radix-ui/react-dialog"],
+    "files": ["ui/dialog.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "input",
+    "files": ["ui/input.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "label",
+    "dependencies": ["@radix-ui/react-label"],
+    "files": ["ui/label.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "form",
+    "dependencies": [
+      "@radix-ui/react-label",
+      "@radix-ui/react-slot",
+      "@hookform/resolvers",
+      "zod",
+      "react-hook-form"
+    ],
+    "registryDependencies": ["button", "label"],
+    "files": ["ui/form.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "dropdown-menu",
+    "dependencies": ["@radix-ui/react-dropdown-menu"],
+    "files": ["dropdown-menu.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "switch",
+    "dependencies": ["@radix-ui/react-switch"],
+    "files": ["ui/switch.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "tabs",
+    "dependencies": ["@radix-ui/react-tabs"],
+    "files": ["ui/tabs.tsx"],
+    "type": "components:ui"
+  },
+  {
+    "name": "button",
+    "dependencies": ["@radix-ui/react-slot"],
+    "files": ["ui/button.tsx"],
+    "type": "components:ui"
+  }
+]

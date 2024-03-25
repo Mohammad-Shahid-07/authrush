@@ -1,0 +1,11 @@
+{
+  "name": "UserMenu.tsx",
+  "files": [
+    {
+      "name": "username",
+      "imports": "",
+      "content": "                  <p className=\"font-semibold text-gray-700\">\n                    {user?.username}\n                  </p>\n                  ",
+      "comment": "{/*[ShowUsername]*/}"
+    }
+  ]
+}

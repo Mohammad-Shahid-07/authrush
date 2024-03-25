@@ -1,0 +1,60 @@
+{
+  "name": "user.model.ts",
+  "files": [
+    {
+      "name": "OAuth",
+      "imports":"",
+      "content": "export interface IAccount {\n    provider: string;\n    providerAccountId: string;\n    refresh_token: string;\n    access_token: string;\n    expires_at: number;\n    expires_in: number;\n    token_type: string;\n    scope: string;\n    id_token: string;\n  }",
+      "comment": "//[OAuthIAccount]"
+    },
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "\npassword?: string;\nemailVerified?: Date;\n",
+      "comment": "//[CredentialsIuser]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "\nusername: string;\n",
+      "comment": "//[CredentialsUsernameIUser]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: { type: String, required: true, unique: true },\n",
+      "comment": "//[CredentialsUsernameUserSchema]"
+    },
+
+    {
+      "name": "OAuth",
+      "imports": "",
+      "content": "\naccounts: IAccount[];\n",
+      "comment": "//[OAuthIUser]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "\ntwoFactorEnabled: boolean;",
+      "comment": "//[CredentialsTwoFactorIUser]"
+    },
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "password: { type: String },\nemailVerified: { type: Date, default: null },\n",
+      "comment": "//[CredentialsUserSchema]"
+    },
+    {
+      "name": "OAuth",
+      "imports": "",
+      "content": "\naccounts: [\n  {\n    provider: String,\n    providerAccountId: { type: String, index: true },\n    refresh_token: String,\n    access_token: String,\n    expires_at: Number,\n    expires_in: Number,\n    token_type: String,\n    scope: String,\n    id_token: String,\n  },\n], ",
+      "comment": "//[OAuthUserSchema]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "\ntwoFactorEnabled: { type: Boolean, default: false },",
+      "comment": "//[CredentialsTwoFactor]"
+    }
+  ]
+}

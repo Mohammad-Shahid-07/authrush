@@ -1,0 +1,89 @@
+---
+title: Web Pages
+description: Auth Rush provides a set of web pages that you can use to build your application.
+---
+
+# Auth Code
+
+Auth Rush provides a set of web pages that you can use to build your application.
+
+## Pages
+
+These are the pages that are provided by Auth Rush.
+
+| Page                   | Description                           |
+| ---------------------- | ------------------------------------- |
+| `/(auth)/error`        | Page related to error handling        |
+| `/(auth)/login`        | Login page for users                  |
+| `/(auth)/new-password` | Page to set a new password            |
+| `/(auth)/register`     | Registration page for new users       |
+| `/(auth)/reset`        | Page to reset a password              |
+| `/(auth)/verify-email` | Page to verify a user's email address |
+
+## Page Components
+
+Each page is rendered using a React component that is exported as the default export. Here's the code for each of the page components:
+
+### `/(auth)/error`
+
+```jsx
+import { ErrorCard } from "@/components/auth/ErrorCard";
+import React from "react";
+
+const Page = () => {
+  return <ErrorCard />;
+};
+
+export default Page;
+```
+
+### `/(auth)/login`
+
+```jsx
+import { LoginForm } from "@/components/auth/LoginForm";
+import React from "react";
+
+const Page = () => {
+  return <LoginForm />;
+};
+
+export default Page;
+```
+
+### `/(auth)/new-password`
+
+```jsx
+import { NewPasswordForm } from "@/components/auth/NewPasswordForm";
+import React from "react";
+
+const Page = () => {
+  return <NewPasswordForm />;
+};
+
+export default Page;
+```
+
+### `/(auth)/reset`
+
+```jsx
+import { ResetForm } from "@/components/auth/ResetForm";
+import React from "react";
+
+const Page = () => {
+  return <ResetForm />;
+};
+
+export default Page;
+```
+
+### `/(auth)/verify-email`
+
+```jsx
+import VerifyEmailForm from "@/components/auth/VerifyEmailForm";
+
+const Page = () => {
+  return <VerifyEmailForm />;
+};
+
+export default Page;
+```

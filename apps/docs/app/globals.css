@@ -1,50 +1,157 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-
-  --callout-rgb: 20, 20, 20;
-  --callout-border-rgb: 108, 108, 108;
-  --card-rgb: 100, 100, 100;
-  --card-border-rgb: 200, 200, 200;
-
-  --glow-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    #2a8af6 0deg,
-    #a853ba 180deg,
-    #e92a67 360deg
-  );
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply h-full bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#19181B] to-[#19181B];
+  }
+  .h1-bold {
+    @apply text-6xl font-extrabold max-md:text-4xl max-sm:text-2xl;
+  }
+  .logo {
+    @apply text-5xl font-extrabold;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.btn {
+  background-image: url("../public/assets/icons/btn.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Path: app/components/button.css */
+.line1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background-color: #393149;
+  position: absolute;
+  left: 196px;
+  top: 28px;
+  rotate: 45deg;
+}
+.line1::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #393149;
+  position: absolute;
+  left: 260px;
+  top: 52px;
+  rotate: 45deg;
+  -webkit-border-radius: 1;
+  -moz-border-radius: 1;
+  -ms-border-radius: 1;
+  -o-border-radius: 1;
+}
+
+/* Path: app/components/button.css */
+.line2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 1px;
+  background-color: #393149;
+  position: absolute;
+  right: 196px;
+  top: 28px;
+  rotate: -45deg;
+}
+.line2::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #393149;
+  position: absolute;
+  right: 260px;
+  top: 52px;
+  -webkit-border-radius: 1;
+  -moz-border-radius: 1;
+  -ms-border-radius: 1;
+  -o-border-radius: 1;
+}
+
+.line3 {
+  background-image: url("../public/assets/icons/line2.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }

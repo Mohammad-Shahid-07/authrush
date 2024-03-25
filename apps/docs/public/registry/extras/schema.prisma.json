@@ -1,0 +1,53 @@
+{
+  "name": "schema.prisma.ts",
+  "files": [
+    {
+      "name": "OAuth",
+      "imports": "",
+      "content": "model Account {\n  id                 String  @id @default(cuid())\n  userId             String\n  type               String\n  provider           String\n  providerAccountId  String\n  refresh_token      String?  @database.Text\n  access_token       String?  @database.Text\n  expires_at         Int?\n  token_type         String?\n  scope              String?\n  id_token           String?  @database.Text\n  session_state      String?\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([provider, providerAccountId])\n}",
+      "comment": "//[OAuthAccountSchema]"
+    },
+    {
+      "name": "OAuth",
+      "imports": "",
+      "content": "  accounts      Account[]",
+      "comment": "//[OAuthUserSchema]"
+    },
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "  emailVerified DateTime?\n      password      String?",
+      "comment": "//[CredentialsSchema]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: { type: String, required: true, unique: true },",
+      "comment": "//[CredentialsUsernameUserSchema]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "  username      String?   @unique",
+      "comment": "//[UsernameSchema]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "  twoFactorEnabled Boolean @default(false)\n      twoFactorConfirmation TwoFactorConfirmation?",
+      "comment": "//[CredentialsTwoFactor]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "\nmodel TwoFactorToken {\n  id String @id @default(cuid())\n  email String\n  token String @unique\n  expiresAt DateTime\n\n  @@unique([email, token])\n}\nmodel TwoFactorConfirmation {\n  id         String   @id @default(cuid())\n  userId     String\n  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([userId])\n}",
+      "comment": "//[TwoFactorTokenSchema]"
+    },
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "model EmailVerification {\n  id String @id @default(cuid())\n  email String\n  token String @unique\n  expiresAt DateTime\n\n  @@unique([email, token])\n}\n\n\nmodel ForgotPassword {\n  id String @id @default(cuid())\n  email String\n  token String @unique\n  expiresAt DateTime\n\n  @@unique([email, token])\n}",
+      "comment": "//[VerificationTokenSchema]"
+    }
+  ]
+}

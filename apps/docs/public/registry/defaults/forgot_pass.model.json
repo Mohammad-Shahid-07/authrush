@@ -1,0 +1,10 @@
+{
+  "name": "forgot_pass.model",
+  "files": [
+    {
+      "name": "forgot_pass.model.ts",
+      "content": "import { Schema, model, models, Document } from \"mongoose\";\n\nexport interface IForgotPassWord extends Document {\n  email: string;\n  token: string;\n  expiresAt: Date;\n}\n\nconst ForgotPasswordSchema = new Schema({\n  email: {\n    type: String,\n    required: true,\n  },\n  token: {\n    type: String,\n    required: true,\n    unique: true\n  },\n  expiresAt: {\n    type: Date,\n    required: true,\n  },\n});\n\nconst ForgotPassword =\n  models.ForgotPassword ||\n  model<IForgotPassWord>(\"ForgotPassword\", ForgotPasswordSchema);\n\nexport default ForgotPassword;"
+    }
+  ],
+  "type": "schema"
+}

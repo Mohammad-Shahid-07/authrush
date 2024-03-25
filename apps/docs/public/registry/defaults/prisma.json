@@ -1,0 +1,10 @@
+{
+  "name": "prisma",
+  "files": [
+    {
+      "name": "database.ts",
+      "content": "import { PrismaClient } from \"@prisma/client\";\n\ndeclare global {\n  var prisma: PrismaClient | undefined;\n}\n\nexport const database = globalThis.prisma || new PrismaClient();\n\nif (process.env.NODE_ENV !== \"production\") globalThis.prisma = database;"
+    }
+  ],
+  "type": "lib"
+}

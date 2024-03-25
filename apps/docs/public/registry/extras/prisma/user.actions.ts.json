@@ -1,0 +1,17 @@
+{
+  "name": "user.actions.ts",
+  "files": [
+    {
+      "name": "username",
+      "imports": "",
+      "content": "export async function updateUserNameUser(params: UpdateUserNameUserProps) {\n  try {\n    const { name, username, pathname } = params;\n    const userSession = await currentUser();\n    if (!userSession) {\n      return null;\n    }\n\n    // Check if the new username is already taken\n    const existingUser = await database.user.findUnique({\n      where: { username },\n    });\n\n    if (existingUser && existingUser.id !== userSession.id) {\n      return { error: \"Username already taken\" };\n    }\n\n    const dataToUpdate: { name: string; username?: string } =\n      name === userSession.name ? { username } : { name, username };\n\n    const updatedUser = await database.user.update({\n      where: {\n        email: userSession.email!,\n      },\n      data: dataToUpdate,\n    });\n\n    if (!updatedUser) {\n      return { error: \"User not found\" };\n    }\n\n    userSession.name = updatedUser.name;\n    userSession.username = updatedUser.username;\n\n    revalidatePath(pathname);\n\n    return { success: \"User updated\" };\n  } catch (error) {\n    console.error(error);\n    throw error;\n  }\n}",
+      "comment": "export async function updateUserNameUser(params: updateUserNameUserProps) {"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "export async function TwoFactorSystem(params: {\n  path: string;\n  twoFactorEnabled: boolean;\n}) {\n  try {\n    const { path, twoFactorEnabled } = params;\n\n    const userSession = await currentUser();\n\n    if (!userSession) {\n      return { error: \"User session not found\" };\n    }\n\n    const user = await database.user.findFirst({\n      where: {\n        email: userSession.email,\n      },\n    });\n\n    if (!user) {\n      return { error: \"User not found\" };\n    }\n\n    if (user.password) {\n      await database.user.update({\n        where: {\n          email: user.email!,\n        },\n        data: {\n          twoFactorEnabled: twoFactorEnabled,\n        },\n      });\n\n      revalidatePath(path);\n\n      return {\n        success: `Two Factor Authentication is ${\n          twoFactorEnabled ? \"Enabled\" : \"Disabled\"\n        }`,\n      };\n    } else {\n      return { error: \"User does not have a password set\" };\n    }\n  } catch (error) {\n    console.error(\"Error in TwoFactorSystem:\", error);\n    throw error;\n  }\n}",
+      "comment": "//[TwoFactorToggleServerAction]"
+    }
+  ]
+}

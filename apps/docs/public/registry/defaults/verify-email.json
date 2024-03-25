@@ -1,0 +1,10 @@
+{
+  "name": "verify-email",
+  "files": [
+    {
+      "name": "page.tsx",
+      "content": "import VerifyEmailForm from '@/components/auth/VerifyEmailForm';\n\nconst Page = () => {\n  return (\n    <VerifyEmailForm />\n  );\n}\n\nexport default Page;"
+    }
+  ],
+  "type": "app:(auth)"
+}

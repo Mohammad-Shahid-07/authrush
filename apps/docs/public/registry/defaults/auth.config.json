@@ -1,0 +1,10 @@
+{
+  "name": "auth.config",
+  "files": [
+    {
+      "name": "auth.config.ts",
+      "content": "//[imports]\nimport type { NextAuthConfig } from \"next-auth\";\n  export default {\n  providers: [\n   //[Google]\n  //[Github] \n//[Credentials]\n  ],     \n} satisfies NextAuthConfig; "
+    }
+  ],
+  "type": "root"
+}

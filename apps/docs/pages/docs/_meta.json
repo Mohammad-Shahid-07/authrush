@@ -1,0 +1,31 @@
+{
+  "index": {
+    "title": "Introduction",
+    "theme": {
+      "typesetting": "article",
+      "breadcrumb": false,
+      "toc": false
+    }
+  },
+  "getting-started": "Getting Started",
+  "--1": {
+    "type": "separator"
+  },
+  "modifications": "Modifications",
+  "core-components": "Core Components",
+  "--2": {
+    "type": "separator"
+  },
+
+  "contribute": "Contribute",
+  "--3": {
+    "type": "separator"
+  },
+
+  "project-link": {
+    "title": "Homepage ↗",
+    "type": "page",
+    "href": "https://authrush.com",
+    "newWindow": true
+  }
+}

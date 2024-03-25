@@ -1,0 +1,10 @@
+{
+  "name": "validations",
+  "files": [
+    {
+      "name": "validations.ts",
+      "content": "import * as z from \"zod\";\n\nexport const LoginSchema = z.object({\n  email: z.string().min(1,{\n    message: \"Please provide a valid email\",\n  }),\n  password: z.string().min(1, {\n    message: \"Please provide a password\",\n  }),\n//[TwoFactorSchema]\n \n});\n\nexport const RegisterSchema = z.object({\n  //[UsernameSchema]\n  email: z.string().email({\n    message: \"Please provide a valid email\",\n  }),\n  password: z.string().min(6, {\n    message: \"Please provide a password with at least 6 characters\",\n  }),\n  name: z.string().min(1, {\n    message: \"Please provide a name\",\n  }),\n});\n\nexport const ResetSchema = z.object({\n  email: z.string().email({\n    message: \"Please provide a valid email\",\n  }),\n});\n\nexport const NewPasswordSchema = z.object({\n  password: z.string().min(6, {\n    message: \"Please provide a password with at least 6 characters\",\n  }),\n});\nexport const UpdateUserSchema = z.object({\n  name: z.string().min(1, {\n    message: \"Please provide a name\",\n  }),\n  //[UsernameSchema]\n});\n\nexport const SetPasswordSchema = z.object({\n  oldPassword: z\n    .string()\n    .min(6, {\n      message: \"Please use at least 6 characters.\",\n    })\n    .max(32)\n    .optional()\n    .or(z.literal(\"\")),\n  newPassword: z\n    .string()\n    .min(6, {\n      message: \"Please use at least 6 characters.\",\n    })\n    .max(32),\n  confirmNewPassword: z\n    .string()\n    .min(6, {\n      message: \"Please use at least 6 characters.\",\n    })\n    .max(32),\n});\n\nexport const TwoFactorTogglerSchema = z.object({\n  twoFactorEnabled: z.optional(z.boolean()),\n});\n\nexport const DeleteAccountSchema = z.object({\n  password: z.string().min(6, {\n    message: \"Please provide a password with at least 6 characters\",\n  }),\n});"
+    }
+  ],
+  "type": "root"
+}

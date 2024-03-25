@@ -1,0 +1,10 @@
+{
+  "name": "authLayout",
+  "files": [
+    {
+      "name": "layout.tsx",
+      "content": "import { currentUser } from \"@/lib/utils/currentSession\";\nimport { redirect } from \"next/navigation\";\n\nexport default async function AuthLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n    const user = await currentUser();\n      \nif (user) {\n        redirect(\"/\");\n      \n}\n   return (\n    <main\n      className=\"flex h-screen flex-col items-center justify-center \"\n    >\n      {children}\n    </main>\n  );\n}"
+    }
+  ],
+  "type": "app:(auth)"
+}

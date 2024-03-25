@@ -1,0 +1,12 @@
+{
+  "name": "Prisma.auth.actions",
+
+  "files": [
+    {
+      "name": "auth.actions.ts",
+      "content": "\"use server\"\n//[imports]\n import { database } from \"@/lib/database\";\nimport { currentUser } from \"@/lib/utils/currentSession\";\nimport { AuthError } from \"next-auth\";\n \n//[CredentialsBase] \n \nexport async function GetUserById(id: string) {\n  try {\n    const user = await database.user.findUnique({\n      where: {\n        id: id,\n      },\n    });\n    if (!user) {\n      return { error: \"User not found\" };\n    }\n    return user;\n  } catch (error) {\n    console.error(error);\n    throw new Error(\"An error occurred while fetching user by ID\");\n  }\n} \n export async function GetUserByEmail(email: string) {\n  try {\n    const user = await database.user.findFirst({\n      where: {\n        email: email,\n      },\n    });\n    return user;\n  } catch (error) {\n    console.error(error);\n    throw new Error(\"An error occurred while fetching user by email\");\n  }\n}\n export async function getdbUser() {\n  try {\n    // Retrieve the current user session\n    const sessionUser = await currentUser(); // Assuming you have a function to retrieve the current user session\n\n    if (!sessionUser) {\n      return { error: 'User not found' };\n    }\n\n    // Find the user by email\n    const user = await database.user.findFirst({\n      where: {\n        email: sessionUser.email,\n      },\n    });\n\n    return JSON.parse(JSON.stringify(user));\n  } catch (error) {\n    console.error(error);\n    throw error;\n  }\n} "
+    }
+  ],
+
+  "type": "actions"
+}

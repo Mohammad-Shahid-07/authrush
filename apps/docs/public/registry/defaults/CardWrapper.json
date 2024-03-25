@@ -1,0 +1,10 @@
+{
+  "name": "CardWrapper",
+  "files": [
+    {
+      "name": "CardWrapper.tsx",
+      "content": "\nimport { Card, CardContent, CardFooter, CardHeader } from \"@/components/ui/card\";\nimport { BackButton } from \"@/components/auth/BackButton\";\nimport { Social } from \"@/components/auth/Social\";\nimport { Header } from \"@/components/auth/Header\";\n\ninterface CardWrapperProps {\n  children: React.ReactNode;\n  headerLabel?: string;\n  BackButtonLabel?: string;\n  BackButtonHref: string;\n  showSocial?: boolean;\n}\nexport const CardWrapper = ({\n  children,\n  headerLabel,\n  BackButtonLabel,\n  BackButtonHref,\n  showSocial,\n}: CardWrapperProps) => {\n  return (\n    <Card className=\"w-[400px] text-white rounded-lg border  shadow-lg border-slate-800 bg-slate-950 \">\n      <CardHeader>\n        <Header label={headerLabel} />\n      </CardHeader>\n      <CardContent>{children}</CardContent>\n      {showSocial && (\n        <CardFooter>\n          <Social />\n        </CardFooter>\n      )}\n      <CardFooter>\n        <BackButton href={BackButtonHref} label={BackButtonLabel} />\n      </CardFooter>\n    </Card>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

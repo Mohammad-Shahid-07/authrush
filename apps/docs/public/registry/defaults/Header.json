@@ -1,0 +1,10 @@
+{
+  "name": "Header",
+  "files": [
+    {
+      "name": "Header.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { Poppins } from \"next/font/google\";\n\nconst font = Poppins({\n  subsets: [\"latin\"],\n  weight: [\"600\"],\n});\n\ninterface HeaderProps {\n  label?: string;\n}\nexport const Header = ({ label }: HeaderProps) => {\n  return (\n    <div className=\"w-full flex flex-col gap-y-4 items-center justify-center\">\n      <h1\n        className={cn(\"text-6xl font-semibold drop-shadow-sm\", font.className)}\n      >\n        Auth\n      </h1>\n      <p className=\"text-muted-foreground text-sm\">{label}</p>\n    </div>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

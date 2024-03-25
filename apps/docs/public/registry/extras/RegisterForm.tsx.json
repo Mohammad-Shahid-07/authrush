@@ -1,0 +1,23 @@
+{
+  "name": "RegisterForm.tsx",
+  "files": [
+    {
+      "name": "username",
+      "imports": "",
+      "content": "if (!/^[a-zA-Z0-9_]+$/.test(values.username)) {\n  return setError(\n    \"Username can only contain letters, numbers, and underscores\",\n  );\n}",
+      "comment": "//[UsernameValidation]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: \"\",",
+      "comment": "//[UsernameValue] "
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "<FormField\n  control={form.control}\n  name=\"username\"\n  render={({ field }) => (\n    <FormItem>\n      <FormLabel>Username</FormLabel>\n      <FormControl>\n        <Input\n          placeholder=\"@johndoe\"\n          disabled={isPending}\n          type=\"text\"\n          {...field}\n        className=\"w-full bg-slate-950 border-slate-700 text-gray-400 ring-0 focus:border-none focus:ring-0 border\"\n        />\n      </FormControl>\n      <FormMessage />\n    </FormItem>\n  )}\n/>",
+      "comment": "{/*UsernameField*/}"
+    }
+  ]
+}

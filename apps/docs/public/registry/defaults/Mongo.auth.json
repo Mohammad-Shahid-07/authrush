@@ -1,0 +1,10 @@
+{
+  "name": "Mongo.auth",
+  "files": [
+    {
+      "name": "auth.ts",
+      "content": "//[imports]\nimport NextAuth, { DefaultSession } from \"next-auth\";\nimport {GetUserByEmail,\nGetUserById,\n} from \"@/actions/auth.actions\";\nimport authConfig from \"@/auth.config\";\n\ntype ExtenededUser = DefaultSession[\"user\"] & {\n  id: string;\n  role: string;\n //[UsernameType]\n  twoFactorEnabled: boolean;\n};\ndeclare module \"next-auth\" {\n  interface Session {\n    user: ExtenededUser;\n  }\n}\n\nexport const {\n  handlers: { GET, POST },\n  auth,\n  signIn,\n  signOut,\n} = NextAuth({\n  pages: {\n    signIn: \"/signin\",\n    error: \"/error\",\n  },\n  callbacks: {\n    async signIn({ user, account }) {\n      //[OAuthSignIn]\n    \n      //[credentialsSignIn]\n     \n      //[credentialsSignInTwoFactor]\n     \n\n      return true;\n    },\n    async session({ session, token }) {\n      if (token.id && session.user) {\n        session.user.id = token?.id.toString();\n      }\n      if (token.role && session.user) {\n        session.user.role = token.role.toString();\n      }\n      if (session.user) {\n        session.user.name = token?.name;\n        session.user.email = token?.email;\n //[AddUsernameInSession]\n        session.user.image = token?.image as string;\n      }\n      return session;\n    },\n    async jwt({ token }) {\n      if (!token.email) {\n        return token;\n      }\n\n      const dbUser = await GetUserByEmail(token.email);\n      if (!dbUser) return token;\n      token.name = dbUser.name;\n      token.email = dbUser.email;\n//[AddUsernameInToken]\n      token.image = dbUser?.image;\n      token.id = dbUser._id;\n      token.role = dbUser.role;\n\n      return token;\n    },\n  },\n\n  ...authConfig,\n  session: {\n    strategy: \"jwt\",\n  },\n});"
+    }
+  ],
+  "type": "root"
+}

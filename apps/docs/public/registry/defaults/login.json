@@ -1,0 +1,10 @@
+{
+  "name": "login",
+  "files": [
+    {
+      "name": "page.tsx",
+      "content": "import { LoginForm } from '@/components/auth/LoginForm';\nimport React from 'react';\n\nconst Page = () => {\n  return <LoginForm />;\n};\n\nexport default Page;"
+    }
+  ],
+  "type": "app:(auth)"
+}

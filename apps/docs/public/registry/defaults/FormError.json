@@ -1,0 +1,10 @@
+{
+  "name": "FormError",
+  "files": [
+    {
+      "name": "FormError.tsx",
+      "content": "import { AlertTriangle } from 'lucide-react';\n\ninterface FormErrorProps {\n  message?: string;\n}\n\nexport const FormError = ({ message }: FormErrorProps) => {\n  if (!message) return null;\n\n  return (\n    <div className='bg-red-400/35 p-3 text-red-500 rounded-md flex items-center gap-x-2 text-sm text-destructive'>\n      <AlertTriangle className='h-4 w-4 ' />\n      <p>{message}</p>\n    </div>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

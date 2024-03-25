@@ -1,0 +1,23 @@
+{
+  "name": "Auth.Config",
+  "files": [
+    {
+      "name": "google",
+      "imports": "import Google from \"next-auth/providers/google\"; \n",
+      "content": " Google({\n  clientId: process.env.GOOGLE_CLIENT_ID,\n  clientSecret: process.env.GOOGLE_CLIENT_SECRET,\n}),",
+      "comment": "//[Google]"
+    },
+    {
+      "name": "github",
+      "imports": "import Github from \"next-auth/providers/github\";\n",
+      "content": "Github({\n  clientId: process.env.GITHUB_CLIENT_ID,\n  clientSecret: process.env.GITHUB_CLIENT_SECRET,\n}),",
+      "comment": "//[Github] "
+    },
+    {
+      "name": "credentials",
+      "imports": "import Credentials from \"next-auth/providers/credentials\";\nimport { LoginSchema } from \"@/validations\";\nimport bcrypt from \"bcryptjs\";\nimport { GetUserByEmail } from \"@/actions/auth.actions\";",
+      "content": " Credentials({\n  async authorize(credentials) {\n    const validatedFields = LoginSchema.safeParse(credentials);\n    if (!validatedFields.success) {\n      return null;\n    }\n\n    if (validatedFields.success) {\n      const { email, password } = validatedFields.data;\n\n      const user = await GetUserByEmail(email);\n      if (!user || !user.password) return null;\n\n      const passwordsMatch = await bcrypt.compare(password, user.password);\n\n      if (passwordsMatch) return user;\n    }\n    return null;\n  },\n})",
+      "comment": "//[Credentials]"
+    }
+  ]
+}

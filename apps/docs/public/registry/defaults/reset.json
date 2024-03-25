@@ -1,0 +1,10 @@
+{
+  "name": "reset",
+  "files": [
+    {
+      "name": "page.tsx",
+      "content": "import { ResetForm } from '@/components/auth/ResetForm';\nimport React from 'react';\n\nconst Page = () => {\n  return (\n    <ResetForm />\n  );\n}\n\nexport default Page;"
+    }
+  ],
+  "type": "app:(auth)"
+}

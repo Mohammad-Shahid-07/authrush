@@ -1,0 +1,10 @@
+{
+  "name": "two_factor_token.model",
+  "files": [
+    {
+      "name": "two_factor_token.model.ts",
+      "content": "import { Schema, model, models, Document } from \"mongoose\";\n\nexport interface ITwoFactorToken extends Document {\n  email: string;\n  token: string;\n  expiresAt: Date;\n}\n\nconst TwoFactorTokenSchema = new Schema({\n  email: {\n    type: String,\n    required: true,\n  },\n  token: {\n    type: String,\n    required: true,\n    unique: true\n  },\n  expiresAt: {\n    type: Date,\n    required: true,\n  },\n});\n\nconst TwoFactorToken =\n  models.TwoFactorToken ||\n  model<ITwoFactorToken>(\"TwoFactorToken\", TwoFactorTokenSchema);\nexport default TwoFactorToken;\n\nexport interface ITwoFactorConfimation extends Document {\n  user: string;\n  expiresAt: Date;\n}\n\nconst TwoFactorConfimationSchema = new Schema({\n  user: {\n    type: Schema.Types.ObjectId,\n    ref: \"User\",\n    required: true,\n  },\n  expiresAt: {\n    type: Date,\n    required: true,\n  },\n});\n\nexport const TwoFactorConfirmation =\n  models.TwoFactorConfirmation ||\n  model<ITwoFactorConfimation>(\n    \"TwoFactorConfirmation\",\n    TwoFactorConfimationSchema,\n  );"
+    }
+  ],
+  "type": "schema"
+}

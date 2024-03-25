@@ -1,0 +1,165 @@
+---
+title: Installation
+description: A CLI Tool to setup authjs. Customizable. Open Source.
+---
+
+import { Steps } from "nextra/components";
+import { Callout } from "nextra/components";
+
+<Steps>
+
+### Create project
+
+Start by creating a new Next.js project using `create-next-app`:
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --eslint
+```
+
+### Run the CLI
+
+Run the `auth-rush` init command to setup your project:
+
+```bash
+npx auth-rush@latest init
+```
+
+### Configure rush.json
+
+You will be asked a few questions to configure `rush.json`:
+
+```json showLineNumbers
+Please choose an authentication provider:
+❯ Credentials
+  Google
+  GitHub
+
+
+Configuration for credentials:
+❯ Do you want to add two-factor authentication? (yes/no)
+❯ Choose a mailing service: nodemailer / resend
+❯ Add username field? (yes/no)
+
+Configuration for magic link:
+❯ Choose a mailing service: nodemailer / resend
+```
+
+### Env variables
+
+Depending on your selection a template .env file will be created with .
+
+> **Note:** Do not change the names of any of the environment variables that are generated. If you do change them, make sure to update them wherever they are being used as well.
+
+```js showLineNumbers
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+NODEMAILER_EMAIL=
+NODEMAILER_EMAIL_PASSWORD=
+
+NEXT_PUBLIC_BASE_URL=
+AUTH_SECRET=
+
+DATABASE_URL=
+# uncomment next line if you use Prisma <5.10
+ DATABASE_URL_UNPOOLED=
+
+```
+
+### App structure
+
+Here's how I structure my Next.js apps. You can use this as a reference:
+
+import { FileTree } from "nextra/components";
+
+<FileTree>
+  <FileTree.Folder name="app" defaultOpen>
+    <FileTree.File name="layout.tsx" />
+    <FileTree.File name="page.tsx" />
+    <FileTree.Folder name="(auth)">
+      <FileTree.File name="login.tsx" />
+      <FileTree.File name="register.tsx" />
+      <FileTree.File name="...">...</FileTree.File>
+    </FileTree.Folder>
+  </FileTree.Folder>
+
+{" "}
+
+<FileTree.Folder name="components" defaultOpen>
+  <FileTree.Folder name="ui">
+    <FileTree.File name="alert-dialog.tsx" />
+    <FileTree.File name="button.tsx" />
+    <FileTree.File name="dropdown-menu.tsx" />
+    <FileTree.File name="...">...</FileTree.File>
+  </FileTree.Folder>
+  <FileTree.Folder name="auth">
+    <FileTree.File name="LoginForm.tsx" />
+    <FileTree.File name="RegisterForm.tsx" />
+    <FileTree.File name="...">...</FileTree.File>
+  </FileTree.Folder>
+  <FileTree.Folder name="user">
+    <FileTree.File name="Profile.tsx" />
+    <FileTree.File name="Settings.tsx" />
+    <FileTree.File name="...">...</FileTree.File>
+  </FileTree.Folder>
+</FileTree.Folder>
+
+{" "}
+
+<FileTree.Folder name="actions">
+  <FileTree.File name="auth.actions.ts" />
+  <FileTree.File name="user.actions.ts" />
+</FileTree.Folder>
+
+{" "}
+
+<FileTree.Folder name="lib">
+  <FileTree.File name="mail.ts" />
+  <FileTree.File name="utils.ts" />
+  <FileTree.File name="database.ts" />
+</FileTree.Folder>
+
+{" "}
+
+<FileTree.Folder name="styles">
+  <FileTree.File name="globals.css" />
+</FileTree.Folder>
+
+  <FileTree.File name="auth.ts" />
+  <FileTree.File name="auth.config.ts" />
+  <FileTree.File name="next.config.js" />
+  <FileTree.File name="package.json" />
+  <FileTree.File name="postcss.config.js" />
+  <FileTree.File name="tailwind.config.js" />
+  <FileTree.File name="tsconfig.json" />
+</FileTree>
+
+- UI components are placed in the components/ui folder.
+- Other components such as `<PageHeader />` and `<MainNav />`are placed in the components folder.
+- Utility functions are stored in the lib folder, with utils.ts defining the cn helper.
+- Authentication-related components are located in the components/auth folder.
+- Actions related to authentication and user are stored in the actions folder.
+- The auth.ts file contains authentication configuration.
+- auth.config.ts holds authentication configuration settings
+
+### That's it
+
+Congratulations! You have successfully set up authentication in your Next.js app. To display the logged-in user, simply add the `<UserMenu />` component. Now you can focus on building your application with confidence.
+
+```js showLineNumbers
+import UserMenu from "@/components/user/UserMenu";
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <UserMenu />
+    </main>
+  );
+}
+```
+
+</Steps>

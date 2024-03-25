@@ -1,0 +1,10 @@
+{
+  "name": "register",
+  "files": [
+    {
+      "name": "page.tsx",
+      "content": "import { RegisterForm } from '@/components/auth/RegisterForm'\nimport React from 'react'\n\nconst Page = () => {\n  return (\n    <div>\n        <RegisterForm />\n    </div>\n  )\n}\n\nexport default Page"
+    }
+  ],
+  "type": "app:(auth)"
+}

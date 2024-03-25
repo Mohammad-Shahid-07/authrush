@@ -1,0 +1,10 @@
+{
+  "name": "ErrorCard",
+  "files": [
+    {
+      "name": "ErrorCard.tsx",
+      "content": "import { AlertTriangleIcon } from \"lucide-react\";\nimport { CardWrapper } from \"@/components/auth/CardWrapper\";\n\nexport const ErrorCard = () => {\n  return (\n   <CardWrapper\n   headerLabel=\"Oops! Something went wrong\"\n   BackButtonHref=\"/login\"\n   BackButtonLabel=\"Back to login\"\n   >\n    <div className=\"w-full flex justify-center items-center\">\n        <AlertTriangleIcon className=\"text-red-500\" />\n    </div>\n   </CardWrapper>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

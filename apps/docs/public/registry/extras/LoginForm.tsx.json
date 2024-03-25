@@ -1,0 +1,43 @@
+{
+  "name": "LoginForm.tsx",
+  "files": [
+    {
+      "name": "credentials",
+      "imports": "\nimport React, { useState, useTransition } from \"react\";\nimport { useForm } from \"react-hook-form\";\nimport { LoginSchema } from \"@/validations\";\nimport * as z from \"zod\";\nimport {\n  Form,\n  FormControl,\n  FormField,\n  FormItem,\n  FormLabel,\n  FormMessage,\n} from \"@/components/ui/form\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { Input } from \"@/components/ui/input\";\nimport { FormError } from \"@/components/auth/FormError\";\nimport { FormSuccess } from '@/components/auth/FormSuccess';\nimport { LoginUser } from \"@/actions/auth.actions\";\nimport { zodResolver } from \"@hookform/resolvers/zod\";\nimport { useSearchParams } from \"next/navigation\";\nimport Link from \"next/link\";\nimport error from \"next/error\";\nimport Loader from \"@/components/auth/Loader\";\n",
+      "content": "\n//[TwoFactorState]\nconst [error, setError] = useState<string | undefined>(\"\");\nconst [success, setSuccess] = useState<string | undefined>(\"\");\nconst [isPending, startTransition] = useTransition();\nconst searchParams = useSearchParams();\nconst urlError =\n  searchParams.get(\"error\") === \"OAuthAccountNotLinked\"\n    ? \"Email aleady in use. Please login with diffrent Provider!\"\n    : \"\";\nconst form = useForm<z.infer<typeof LoginSchema>>({\n  resolver: zodResolver(LoginSchema),\n  defaultValues: {\n    email: \"\",\n    password: \"\",\n  },\n});\n\nconst formFieldLabels = {\n  label: \"Email\",\n  type: \"email\",\n  placeholder: \"jogn.doe@example.com\",\n};\n\nasync function onSubmit(values: z.infer<typeof LoginSchema>) {\n\n      setSuccess(\"\");\n      setError(\"\");        \n  startTransition(() => {\n\n    LoginUser(values)\n      .then((res) => {\n        if (res?.error) {\n          form.reset();\n          setError(res?.error);\n        }\n        if (res?.success) {\n          form.reset();\n          setSuccess(res?.success!);\n    //[TwoFactorClientFunctionality]  \n   }\n      })\n      .catch((err) => {\n        setError(err?.message);\n      });\n  });\n}\n\n\n //[showTwoFactor] \n",
+      "comment": "//[CredentialsBaseFunctionality]"
+    },
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "<Form {...form}>\n      <form onSubmit={form.handleSubmit(onSubmit)} className=\"space-y-8\">\n        <div className=\"space-y-6\">\n         \n          <>\n            <FormField\n              control={form.control}\n              name=\"email\"\n              render={({ field }) => (\n                <FormItem>\n                  <FormLabel>{formFieldLabels.label}</FormLabel>\n                  <FormControl>\n                    <Input\n                      placeholder={formFieldLabels.placeholder}\n                      type={formFieldLabels.type}\n                      disabled={isPending}\n                      {...field}\n                    className=\"w-full bg-slate-950 border-slate-700 text-gray-400 ring-0 focus:border-none focus:ring-0 border\"                    \n/>\n                  </FormControl>\n                  <FormMessage />\n                </FormItem>\n              )}\n            />\n            <FormField\n              control={form.control}\n              name=\"password\"\n              render={({ field }) => (\n                <FormItem>\n                  <FormLabel>Password</FormLabel>\n                  <FormControl>\n                    <Input\n                      placeholder=\"password\"\n                      disabled={isPending}\n                      type=\"password\"\n                      {...field}\n                    className=\"w-full bg-slate-950 border-slate-700 text-gray-400 ring-0 focus:border-none focus:ring-0 border\"                    \n/>\n                  </FormControl>\n             <Button\n                    variant=\"link\"\n                    asChild\n                    className=\"px-1 font-normal\"\n                    disabled={isPending}\n                  >\n                    <Link href=\"/reset\">Forgot Password?</Link>\n                  </Button>\n                  <FormMessage />\n                </FormItem>\n              )}\n            />\n          </>\n      </div>\n        <FormError message={error || urlError} />\n        <FormSuccess message={success} />\n      {isPending ? (\n     <Loader  color=\"white\"/>\n     ) : (\n      <Button type=\"submit\" className=\"w-full text-white bg-slate-800\" disabled={isPending}>\n          Login\n        </Button>\n     )}\n      </form>\n    </Form>\n    \n ",
+      "comment": "{/*[CredentialsBase]*/}"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "\nconst [showTwoFactor, setShowTwoFactor] = useState(false);",
+      "comment": "//[TwoFactorState]"
+    },
+
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "\n\n      if (res?.twoFactor) {\n        setShowTwoFactor(true);\n      }\n ",
+      "comment": "//[TwoFactorClientFunctionality]"
+    },
+    {
+      "name": "twoFactorAuth",
+      "imports": "",
+      "content": "if(showTwoFactor) {\n  return (\n    <CardWrapper\n      headerLabel=\"Welcome back!\"\n      BackButtonLabel=\"Don't have an account?\"\n      BackButtonHref=\"/register\"\n      showSocial\n    >\n      <Form {...form}>\n        <form onSubmit={form.handleSubmit(onSubmit)} className=\"space-y-8\">\n          <div className=\"space-y-6\">\n            <FormField\n              control={form.control}\n              name=\"code\"\n              render={({ field }) => (\n                <FormItem>\n                  <FormLabel>Code</FormLabel>\n                  <FormControl>\n                    <Input\n                      placeholder=\"123456\"\n                      type=\"number\"\n                      disabled={isPending}\n                      {...field}\n                    className=\"w-full bg-slate-950 border-slate-700 text-gray-400 ring-0 focus:border-none focus:ring-0 border\"                    \n/>\n                  </FormControl>\n                  <FormMessage />\n                </FormItem>\n              )}\n            />\n          </div>\n          <FormError message={error || urlError} />\n          <FormSuccess message={success} />\n          <Button type=\"submit\" className=\"w-full text-white bg-slate-800\" disabled={isPending}>\n            Verify\n          </Button>\n        </form>\n      </Form>\n    </CardWrapper>\n  )\n}",
+      "comment": "//[showTwoFactor]"
+    },
+
+    {
+      "name": "username",
+      "imports": "",
+      "content": "const formFieldLabels = {\n  label: \"Email or Username\",\n  type: \"text\",\n  placeholder: \"email or username\",\n};",
+      "comment": "const formFieldLabels"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+---
+title: Adding Authentication Providers
+---
+
+import { Callout } from "nextra/components";
+
+# Adding Authentication Providers
+
+Auth Rush comes pre-configured with three authentication providers: Credentials (email and password), Google, and GitHub. These providers are defined in the `@/auth.config.ts` file:
+
+```ts
+// imports...
+
+export default {
+  providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    Github({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+    Credentials({
+      // ...
+    }),
+  ],
+} satisfies NextAuthConfig;
+```
+
+## Adding a New Provider
+
+To add a new authentication provider, you can follow the same pattern as the existing providers. First, import the provider from the `next-auth/providers` package, then add it to the `providers` array in the `auth.config.ts` file.
+
+For example, to add LinkedIn authentication, you can do the following:
+
+1. Import the LinkedIn provider:
+
+```ts
+import LinkedIn from "next-auth/providers/linkedin";
+```
+
+2. Add the LinkedIn provider to the `providers` array with the required configuration:
+
+```ts
+export default {
+  providers: [
+    // ... existing providers
+    LinkedIn({
+      clientId: process.env.LINKEDIN_CLIENT_ID,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+    }),
+  ],
+} satisfies NextAuthConfig;
+```
+
+3. Add the corresponding environment variables (`LINKEDIN_CLIENT_ID` and `LINKEDIN_CLIENT_SECRET`) to your `.env` file.
+
+<Callout emoji="💡">
+  You can find the list of available providers and their configuration options
+  in the [NextAuth.js documentation](https://next-auth.js.org/providers/).
+</Callout>

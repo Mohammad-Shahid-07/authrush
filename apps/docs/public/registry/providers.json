@@ -1,0 +1,34 @@
+[
+  {
+    "name": "google"
+  },
+  {
+    "name": "github"
+  },
+  {
+    "name": "credentials",
+    "questions": [
+      {
+        "question": "Would you like to enable two-factor authentication?",
+        "type": "toggle",
+        "name": "twoFactorAuth",
+        "active": "Yes",
+        "inactive": "No"
+      },
+      {
+        "question": "Please select a mailing service:",
+        "type": "toggle",
+        "name": "emailProvider",
+        "active": "Nodemailer",
+        "inactive": "Resend"
+      },
+      {
+        "question": "Do you want to include a username field?",
+        "type": "toggle",
+        "name": "username",
+        "active": "Yes",
+        "inactive": "No"
+      }
+    ]
+  }
+]

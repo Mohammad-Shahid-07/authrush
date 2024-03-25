@@ -1,0 +1,10 @@
+{
+  "name": "middleware",
+  "files": [
+    {
+      "name": "middleware.ts",
+      "content": "import NextAuth from \"next-auth\";\n\nimport authConfig from \"@/auth.config\";\nimport {\n  DEFAULT_LOGIN_REDIRECT,\n  apiAuthPrefix,\n  authRoutes,\n  publicRoutes,\n} from \"@/routes\";\n\nconst { auth } = NextAuth(authConfig);\n\nexport default auth((req) => {\n  const { nextUrl } = req;\n  const isLoggedIn = !!req.auth;\n\n  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);\n  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);\n  const isAuthRoute = authRoutes.includes(nextUrl.pathname);\n\n  if (isApiAuthRoute) {\n    return null;\n  }\n\n  if (isAuthRoute) {\n    if (isLoggedIn) {\n      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));\n    }\n    return null;\n  }\n\n  if (!isLoggedIn && !isPublicRoute) {\n    let callbackUrl = nextUrl.pathname;\n    if (nextUrl.search) {\n      callbackUrl += nextUrl.search;\n    }\n\n    const encodedCallbackUrl = encodeURIComponent(callbackUrl);\n\n    return Response.redirect(\n      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),\n    );\n  }\n\n  return null;\n});\n\n// Optionally, don't invoke Middleware on some paths\nexport const config = {\n  matcher: [\"/((?!.+\\\\.[\\\\w]+$|_next).*)\", \"/\", \"/(api|trpc)(.*)\"],\n};"
+    }
+  ],
+  "type": "root"
+}

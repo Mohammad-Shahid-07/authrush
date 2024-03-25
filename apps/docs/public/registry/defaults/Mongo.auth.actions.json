@@ -1,0 +1,12 @@
+{
+  "name": "Mongo.auth.actions",
+
+  "files": [
+    {
+      "name": "auth.actions.ts",
+      "content": "\"use server\"\n//[imports]\nimport User from \"@/models/user.model\"; import { connectToDatabase } from \"@/lib/database\";import { currentUser } from \"@/lib/utils/currentSession\";\nimport { AuthError } from \"next-auth\";\n \n//[CredentialsBase] \n//[OAuthBase]  \nexport async function GetUserByEmail(email: string) {\n  try {\n    connectToDatabase();\n    const user = await User.findOne({ email });\n    return user;\n  } catch (error) {\n    console.log(error);\n  }\n} \n export async function GetUserById(id: string) {\n  try {\n    connectToDatabase();\n\n    const user = await User.findOne({ _id: id });\n    if (!user) {\n      return { error: \"User not found\" };\n    }\n    return user;\n  } catch (error) {\n    console.log(error);\n  }\n}\n export async function getdbUser() {\n try {\n  connectToDatabase();\n  const sessionUser = await currentUser();\n  if (!sessionUser) {\n    return { error: \"User not found\" };\n  }\n\n  const user = await User.findOne({\n    email: sessionUser.email,\n  });\n  return JSON.parse(JSON.stringify(user));\n} catch (error) {\n  console.log(error);\n} \n}  "
+    }
+  ],
+
+  "type": "actions"
+}

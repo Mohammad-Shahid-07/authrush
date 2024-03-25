@@ -9,6 +9,7 @@
 
 .vercelLogo {
   filter: invert(1);
+  -webkit-filter: invert(1);
 }
 
 .description {

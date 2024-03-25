@@ -1,0 +1,17 @@
+{
+  "name": "Social.tsx",
+  "files": [
+    {
+      "name": "google",
+      "imports": "",
+      "content": "<Button\n        className=\"w-full\"\n        variant=\"outline\"\n        size=\"lg\"\n        onClick={() => handleOauth(\"google\")}\n      >\n        <Image \nsrc=\"https://utfs.io/f/eb04033a-a0af-402c-b691-1ffeadec8c91-c3fgyx.svg\"\nalt=\"google\"\nwidth={20}\nheight={20}\nclassName=\"w-6 h-6\"/>\n      </Button>\n",
+      "comment": "{/*[Google]*/}"
+    },
+    {
+      "name": "github",
+      "imports": "",
+      "content": " <Button\n        className=\"w-full \"\n        variant=\"outline\"\n        size=\"lg\"\n        onClick={() => handleOauth(\"github\")}\n      >\n        <Image \nsrc=\"https://utfs.io/f/d3274ee5-df7a-467b-a974-6b4197ee1aa5-n8iwbn.svg\"\nalt=\"google\"\nwidth={20}\nheight={20}\nclassName=\"w-6 h-6\"/>\n   \n      </Button>\n ",
+      "comment": "{/*[github]*/}"
+    }
+  ]
+}

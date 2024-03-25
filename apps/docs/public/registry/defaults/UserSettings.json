@@ -1,0 +1,11 @@
+{
+  "name": "UserSettings",
+  "files": [
+    {
+      "name": "UserSettings.tsx",
+      "imports": "",
+      "content": "\"use client\"\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from \"@/components/ui/tabs\";\nimport React from \"react\";\nimport AccountContent from \"@/components/user/AccountContent\";\nimport SecuityContent from \"@/components/user/SecurityContent\";\nimport DangerContent from \"@/components/user/DangerContent\";\n\nconst UserSettings = () => {\n  return (\n    <div>\n      <Tabs\n        defaultValue=\"account\"\n        className=\"w-[400px] bg-white shadow-md drop-shadow-lg rounded-md\"\n      >\n        <TabsList className=\"flex justify-between bg-[#27272a]  items-center w-full grid-cols-3\">\n          <TabsTrigger\n            value=\"account\"\n            className=\"data-[state=active]:bg-[#09090b] flex-1 data-[state=active]:text-white\"\n          >\n            Account\n          </TabsTrigger>\n\n          <TabsTrigger\n            value=\"password\"\n            className=\"data-[state=active]:bg-[#09090b] flex-1 border-r  data-[state=active]:text-white \"\n          >\n            Security\n          </TabsTrigger>\n\n          <TabsTrigger\n            value=\"danger\"\n            className=\"data-[state=active]:bg-rose-500 flex-1 data-[state=active]:text-white \"\n          >\n            Danger\n          </TabsTrigger>\n        </TabsList>\n        <TabsContent value=\"account\">\n          <AccountContent />\n        </TabsContent>\n        <TabsContent value=\"password\">\n          <SecuityContent />\n        </TabsContent>\n        <TabsContent value=\"danger\">\n          <DangerContent />\n        </TabsContent>\n      </Tabs>\n    </div>\n  );\n};\n\nexport default UserSettings;"
+    }
+  ],
+  "type": "components:user"
+}

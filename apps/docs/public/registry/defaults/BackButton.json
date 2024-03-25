@@ -1,0 +1,10 @@
+{
+  "name": "BackButton",
+  "files": [
+    {
+      "name": "BackButton.tsx",
+      "content": "import Link from \"next/link\";\nimport { Button } from \"@/components/ui/button\";\n\ninterface BackButtonProps {\n  href: string;\n  label?: string;\n}\n\nexport const BackButton = ({ href, label }: BackButtonProps) => {\n  return (\n    <Button className=\"font-normal w-full\" asChild size=\"sm\" variant=\"link\">\n      <Link href={href}>{label}</Link>\n    </Button>\n  );\n};"
+    }
+  ],
+  "type": "components:auth"
+}

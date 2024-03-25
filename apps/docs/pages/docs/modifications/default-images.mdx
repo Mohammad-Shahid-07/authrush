@@ -1,0 +1,41 @@
+---
+title: User Avatars
+description: Learn how to customize user avatars in Auth Rush.
+---
+
+# User Avatars
+
+import { Callout } from "nextra/components";
+
+By default, Auth Rush provides a set of predefined avatar images that are randomly assigned to new users. These images are stored in an array of URLs in the `constants.ts` file:
+
+```ts
+export const ProfileUrls: ProfileUrl[] = [
+  "https://utfs.io/f/34d50b7f-0bdc-4f80-a7c4-61154de964ec-ff5evf.jpg",
+  "https://utfs.io/f/d47a792e-a6dc-4ab3-976b-8fc540685aa3-ff5evg.jpg",
+  // ... more URLs
+];
+```
+
+## Changing the Default Avatars
+
+To change the default avatar images, you can simply replace the URLs in the `ProfileUrls` array with your desired image URLs. Here's how you can do it:
+
+1. Locate the `constants.ts` file in the `@/lib` directory of your project.
+2. Replace the existing URLs in the `ProfileUrls` array with the URLs of your new avatar images.
+3. Save the changes, and the new avatar images will be used for new user registrations.
+
+<Callout emoji="💡">
+  Make sure that the new image URLs are valid and accessible. Also, keep in mind
+  that using too many large images may impact the performance of your
+  application.
+</Callout>
+
+## Adding Image Upload Functionality
+
+Auth Rush currently does not provide built-in image upload functionality. However, this feature is planned for future versions of the library.
+
+<Callout type="warning" emoji="⚠️">
+  Image upload functionality is not available in the current version of Auth
+  Rush. This feature will be added in a future release.
+</Callout>

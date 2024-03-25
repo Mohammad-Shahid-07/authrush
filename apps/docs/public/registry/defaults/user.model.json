@@ -1,0 +1,10 @@
+{
+  "name": "user.model",
+  "files": [
+    {
+      "name": "user.model.ts",
+      "content": "import { Schema, model, models, Document } from \"mongoose\";\n\n//[OAuthIAccount]\n\nexport interface IUser extends Document {\n  name: string;\n  email: string;\n  image: string;\n//[CredentialsIuser]\n  //[CredentialsUsernameIUser]\n  //[OAuthIUser]\n  role: string;\n  //[CredentialsTwoFactorIUser]\n\n}\n\nconst UserSchema = new Schema({\n  name: { type: String, required: true },\n  email: { type: String, required: true, unique: true },\n  \n  image: { type: String },\n //[CredentialsUserSchema]\n  //[CredentialsUsernameUserSchema]\n  //[OAuthUserSchema]\n  role: { type: String, default: \"USER\" },\n  //[CredentialsTwoFactor]\n \n});\n\nconst User = models?.User || model<IUser>(\"User\", UserSchema);\n\nexport default User;"
+    }
+  ],
+  "type": "schema"
+}

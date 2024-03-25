@@ -1,0 +1,11 @@
+{
+  "name": "routes",
+  "files": [
+    {
+      "name": "routes.ts",
+      "content": "export const publicRoutes = [\"/\", \"/verify-email\"];\n export const authRoutes = [\"/login\", \"/register\", \"/error\", \"/reset\", \"/new-password\", ];\n export const apiAuthPrefix = \"/api/auth\"; export const DEFAULT_LOGIN_REDIRECT = \"/\"; ",
+      "comment": ""
+    }
+  ],
+  "type": "root"
+}

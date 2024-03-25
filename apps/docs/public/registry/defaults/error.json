@@ -1,0 +1,10 @@
+{
+  "name": "error",
+  "files": [
+    {
+      "name": "page.tsx",
+      "content": "import { ErrorCard } from '@/components/auth/ErrorCard';\nimport React from 'react';\n\nconst Page = () => {\n  return (\n    <ErrorCard />\n  );\n};\n\nexport default Page;"
+    }
+  ],
+  "type": "app:(auth)"
+}

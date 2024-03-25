@@ -1,0 +1,10 @@
+{
+  "name": "nodemailer",
+  "files": [
+    {
+      "name": "mail.ts",
+      "content": "\"use server\";\nimport nodemailer, { Transporter } from \"nodemailer\";\n\ninterface EmailOptions {\n  from: string;\n  to: string;\n  subject: string;\n  html: string;\n}\nconst domain = process.env.NEXT_PUBLIC_BASE_URL || \"http://localhost:3000\";\nconst senderMail = process.env.NODEMAILER_EMAIL;\nconst transporter = nodemailer.createTransport({\n  pool: true,\n  service: \"hotmail\",\n  port: 2525,\n  auth: {\n    user: senderMail,\n    pass: process.env.NODEMAILER_EMAIL_PASSWORD,\n  },\n  maxConnections: 1,\n});\n\nexport const sendVerificationEmail = async (name:string ,email: string, token: string) => {\n  const confirmLink = `${domain}/verify-email?token=${token}`;\n\n  const mailOptions = {\n    from: senderMail,\n    to: email,\n    subject: \"Confirm your email\",\n    html: `<p>Click <a href=\"${confirmLink}\">here</a> to confirm email.</p>`,\n  };\n  await new Promise((resolve, reject) => {\n    transporter.sendMail(mailOptions, (error: any, info: any) => {\n      if (error) {\n        console.error(error);\n        reject(error);\n      }\n      else {\n        resolve(info);\n}\n    });\n  });\n};\n\n//[TwoFactorMailNodeMailer]\n\nexport const sendResetEmail = async (name:string ,email: string, token: string) => {\n  const resetLink = `${domain}/new-password?token=${token}`;\n  const mailOptions = {\n    from: senderMail,\n    to: email,\n    subject: \"Reset your password\",\n    html: `<p>Click <a href=\"${resetLink}\">here</a> to reset password.</p>`,\n  };\n  await new Promise((resolve, reject) => {\n    transporter.sendMail(mailOptions, (error: any, info: any) => {\n      if (error) {\n        console.error(error);\n        reject(error);\n      }\n      else {\n        resolve(info);\n}\n    });\n  });\n};"
+    }
+  ],
+  "type": "lib"
+}

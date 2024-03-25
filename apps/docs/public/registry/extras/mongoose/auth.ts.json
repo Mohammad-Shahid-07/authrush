@@ -1,0 +1,42 @@
+{
+  "name": "auth.ts",
+  "files": [
+    {
+      "name": "credentials",
+      "imports": "",
+      "content": "const existingUser = await GetUserById(user.id);\n\n  \nif (!existingUser?.emailVerified) return false;",
+      "comment": "//[credentialsSignIn]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "username: string,",
+      "comment": "//[UsernameType]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "token.username = dbUser.username;",
+      "comment": "//[AddUsernameInToken]"
+    },
+    {
+      "name": "username",
+      "imports": "",
+      "content": "session.user.username = token?.username as string;",
+      "comment": "//[AddUsernameInSession]"
+    },
+
+    {
+      "name": "twoFactorAuth",
+      "imports": "import {getTwoFactorConfirmationByUserId} from \"@/actions/auth.actions\";\n",
+      "content": "if (existingUser?.twoFactorEnabled) {\n    const twoFactorConfimation = await getTwoFactorConfirmationByUserId(\n      existingUser._id,\n    );\n\n    if (!twoFactorConfimation) return false;\n    await twoFactorConfimation.deleteOne();\n  }",
+      "comment": "//[credentialsSignInTwoFactor]"
+    },
+    {
+      "name": "OAuth",
+      "imports": "import {LoginWithOAuth} from \"@/actions/auth.actions\";\n",
+      "content": "if (account?.provider !== \"credentials\") {\n  await LoginWithOAuth({ user, account });\n  return true;\n}",
+      "comment": "//[OAuthSignIn]"
+    }
+  ]
+}

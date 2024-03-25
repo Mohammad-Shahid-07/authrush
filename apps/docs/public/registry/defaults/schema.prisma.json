@@ -1,0 +1,12 @@
+{
+  "name": "schema.prisma",
+  "files": [
+    {
+      "name": "schema.prisma",
+
+      "content": "// prisma/schema.prisma\ndatasource database {\n  provider  = \"postgresql\"\n  url    = env(\"DATABASE_URL\")\n  directUrl = env(\"DATABASE_URL_UNPOOLED\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n}\n\nenum UserRole {\n  ADMIN\n  USER\n}\n\nmodel User {\n  id            String    @id @default(cuid())\n  name          String?\n  email         String?   @unique\n  image         String?\n  role          UserRole @default(USER)\n  //[UsernameSchema]\n\n  //[CredentialsSchema]\n  //[OAuthUserSchema]\n  //[CredentialsTwoFactor]\n\n  \n} \n//[OAuthAccountSchema]\n//[VerificationTokenSchema]\n//[TwoFactorTokenSchema] \n"
+    }
+  ],
+  "devDependencies": ["prisma"],
+  "type": "schema"
+}
