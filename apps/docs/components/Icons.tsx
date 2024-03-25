@@ -1,4 +1,3 @@
-import { useTheme } from "nextra-theme-docs";
 
 export function Javascript() {
   return (
