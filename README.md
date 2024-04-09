@@ -4,7 +4,7 @@
 
 
 Auth Rush is a powerful authentication and authorization solution for web applications. It provides a seamless integration of various authentication providers, such as OAuth and Credentials, allowing developers to easily implement secure user authentication and authorization in their applications.
-
+![hero](apps/docs/public/assets/icons)
 ### Key Features
 
 - Role-based access control (RBAC)
